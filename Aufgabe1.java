@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Aufgabe1 {
 
-	public void printSeperationLine() {
+	public static void printSeperationLine() {
 		System.out.println("=======================================");
 	}
 
@@ -17,8 +17,9 @@ public class Aufgabe1 {
 		System.out.println("Matrikelnummer: ");
 		int matrikelNummer = sc.nextInt();
 		sc.nextLine();
-
-		Student student = new Student(firstName, lastName, matrikelNummer);
+		System.out.println("E-Mail: ");
+		String eMail = sc.nextLine();
+		Student student = new Student(firstName, lastName, matrikelNummer, eMail);
 		student.setCourse(course);
 		return student;
 	}
@@ -54,6 +55,7 @@ public class Aufgabe1 {
 		boolean endInput = false;
 		int input;
 		do {
+			printSeperationLine();
 			System.out.println("Auswahlbildschirm:");
 			System.out.println("1.Student anlegen.");
 			System.out.println("2.Student bearbeiten.");
@@ -123,10 +125,11 @@ class Student {
 	private int matrikelNummer;
 	private String eMail;
 
-	public Student(String firstName, String lastName, int matrikelNummer) {
+	public Student(String firstName, String lastName, int matrikelNummer, String eMail) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.matrikelNummer = matrikelNummer;
+		this.eMail = eMail;
 	}
 
 	public float averageGrade() {
@@ -154,6 +157,8 @@ class Student {
 		System.out.println("Neue Matrikelnummer: ");
 		setMatrikelNummer(sc.nextInt());
 		sc.nextLine();
+		System.out.println("Neue E-Mail: ");
+		seteMail(sc.nextLine());
 
 	}
 
@@ -162,6 +167,7 @@ class Student {
 		System.out.println("Name: " + firstName + " " + lastName);
 		System.out.println("Matrikelnummer: " + matrikelNummer);
 		System.out.println("Studiengang: " + course.getName());
+		System.out.println("E-Mail: " + eMail);
 		printSeperationLine();
 	}
 
@@ -235,6 +241,7 @@ class College {
 			currentStudent.printStudent();
 			for (Class currentClass : currentStudent.getCourse().getClasses()) {
 				currentClass.printClass();
+				printSeperationLine();
 			}
 			currentStudent.printAverage();
 			printSeperationLine();
